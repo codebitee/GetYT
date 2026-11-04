@@ -1,281 +1,399 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Free online YouTube video downloader. Download YouTube videos and music in MP3 and MP4 formats easily with multiple quality options.">
+    <meta name="keywords" content="yt mate, y2, mate, YouTube downloader, YouTube to MP3, YouTube to MP4, free video downloader, download youtube audio">
+    <meta name="author" content="Aditya Santosh Jagtap">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="GetYT - Free YouTube Video & Audio Downloader | codebitee">
+    <meta property="og:description" content="Download your favorite YouTube videos and songs instantly in MP3 or MP4 format, part of the codebitee ecosystem.">
+    <meta property="og:type" content="website">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GetYT - YouTube Video Downloader | codebitee</title>
+    <title>GetYT - YouTube Downloader | codebitee</title>
     <style>
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
         body {
-            background-color: #0b0f19;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0b0f19; /* codebitee dark theme background */
             color: #ffffff;
+            margin: 0;
+            padding: 20px 20px 60px 20px;
             display: flex;
             flex-direction: column;
+            align-items: center;
             min-height: 100vh;
         }
 
-        /* Navbar */
-        nav {
+        /* Top Ecosystem Navbar Link */
+        .top-nav {
+            width: 100%;
+            max-width: 400px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 5%;
-            background-color: #0b0f19;
-            border-bottom: 1px solid #1e2530;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
         }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ffffff;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo span {
+        .top-nav a {
             color: #3b82f6;
+            text-decoration: none;
+            font-weight: bold;
         }
-
-        .nav-right {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .search-box {
-            background-color: #161b22;
-            border: 1px solid #30363d;
-            padding: 8px 15px;
-            border-radius: 8px;
+        .top-nav span {
             color: #8b949e;
-            font-size: 0.9rem;
-            outline: none;
         }
 
-        /* Main Container */
         .container {
-            flex: 1;
-            max-width: 800px;
-            width: 90%;
-            margin: 40px auto;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, #ffffff, #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        p.subtitle {
-            color: #9ca3af;
-            font-size: 1rem;
-            margin-bottom: 30px;
-        }
-
-        /* Downloader Card Box */
-        .downloader-card {
-            background-color: #121824;
-            border: 1px solid #1f293d;
+            width: 100%;
+            max-width: 400px;
+            background: #121824; /* codebitee card background */
+            padding: 20px;
             border-radius: 16px;
-            padding: 30px;
+            border: 1px solid #1f293d;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            text-align: left;
         }
-
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .logo-box {
+            background-color: #ff0000; /* Shiny red button touch */
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-right: 4px;
+            box-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
+        }
+        .logo-text {
+            color: #ffffff;
+        }
         .input-group {
             display: flex;
+            flex-direction: column;
             gap: 10px;
             margin-bottom: 20px;
         }
-
-        .input-group input {
-            flex: 1;
-            padding: 12px 16px;
-            background-color: #0b0f19;
+        input[type="text"] {
+            padding: 12px;
+            background: #0b0f19;
             border: 1px solid #30363d;
+            color: #fff;
             border-radius: 8px;
-            color: #ffffff;
-            font-size: 1rem;
+            font-size: 14px;
             outline: none;
         }
-
-        .input-group input:focus {
-            border-color: #3b82f6;
+        input[type="text"]:focus {
+            border-color: #ff0000;
         }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        
+        /* Action Buttons with Shiny Red Touch */
+        .action-btn {
+            padding: 12px;
+            background: linear-gradient(135deg, #ff0000, #cc0000);
             color: white;
             border: none;
-            padding: 12px 24px;
             border-radius: 8px;
-            font-weight: bold;
+            font-size: 16px;
             cursor: pointer;
-            transition: 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(255, 0, 0, 0.4);
+            transition: 0.2s;
         }
-
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: translateY(-1px);
+        .action-btn:hover {
+            background: linear-gradient(135deg, #ff1a1a, #e60000);
+            box-shadow: 0 6px 15px rgba(255, 0, 0, 0.6);
         }
-
-        /* Ad Placeholder Container (As requested earlier) */
-        .ad-container {
-            background-color: #0b0f19;
+        .download-btn {
+            background: linear-gradient(135deg, #00b33c, #00802b) !important;
+            box-shadow: 0 4px 10px rgba(0, 179, 60, 0.4) !important;
+        }
+        .download-btn:hover {
+            background: linear-gradient(135deg, #00cc44, #009933) !important;
+            box-shadow: 0 6px 15px rgba(0, 179, 60, 0.6) !important;
+        }
+        .content-section {
+            display: flex;
+            gap: 15px;
+        }
+        .poster-box {
+            width: 50%;
+            height: 140px;
+            background: #0b0f19;
             border: 1px dashed #30363d;
             border-radius: 8px;
-            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
             text-align: center;
-            color: #6b7280;
-            margin-top: 20px;
-            font-size: 0.85rem;
+            color: #8b949e;
+            font-size: 13px;
         }
-
-        /* Footer matching codebitee */
-        footer {
-            background-color: #0b0f19;
-            border-top: 1px solid #1e2530;
-            padding: 40px 5% 20px 5%;
-            margin-top: 60px;
+        .poster-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
-
-        .footer-content {
-            max-width: 1100px;
-            margin: 0 auto;
+        .options-box {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
-
-        .footer-content h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        .footer-content p {
+        .options-box label {
+            font-weight: bold;
+            font-size: 13px;
             color: #9ca3af;
-            font-size: 0.9rem;
+        }
+        .format-buttons {
+            display: flex;
+            gap: 5px;
+        }
+        .format-buttons button {
+            flex: 1;
+            padding: 6px;
+            font-size: 12px;
+            background: #0b0f19;
+            color: #9ca3af;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .format-buttons button.active {
+            background: #ff0000;
+            color: white;
+            border-color: #ff0000;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+        
+        /* Ad Space Container */
+        .ad-container {
+            width: 100%;
+            max-width: 400px;
+            height: 120px;
+            background: #121824;
+            border: 1px dashed #30363d;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-size: 13px;
+            margin: 15px 0;
+        }
+        
+        .download-wrapper {
+            width: 100%;
+            max-width: 400px;
+            margin-top: auto;
             margin-bottom: 20px;
         }
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
+        /* Footer Links matching codebitee */
+        .page-footer {
+            text-align: center;
+            font-size: 11px;
+            color: #6b7280;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 10px;
+            border-top: 1px solid #1e2530;
+            padding-top: 15px;
         }
-
-        .footer-card {
-            background-color: #121824;
-            border: 1px solid #1f293d;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 0.85rem;
+        .page-footer p {
+            margin-bottom: 8px;
             color: #9ca3af;
         }
-
-        .footer-card span {
-            display: block;
-            color: #ffffff;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #1e2530;
-            padding-top: 20px;
-            font-size: 0.85rem;
-            color: #6b7280;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .footer-bottom a {
+        .page-footer a {
             color: #9ca3af;
             text-decoration: none;
+            margin: 0 4px;
         }
-
-        .footer-bottom a:hover {
+        .page-footer a:hover {
             color: #ffffff;
         }
     </style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav>
-        <a href="https://codebitee.github.io" class="logo">
-            🌐 codebitee <span>/ GetYT</span>
-        </a>
-        <div class="nav-right">
-            <span style="font-size: 0.9rem; color: #9ca3af;">Part of codebitee ecosystem</span>
+<!-- Ecosystem Link Back to codebitee -->
+<div class="top-nav">
+    <span>Sub-tool of codebitee</span>
+    <a href="https://codebitee.github.io" target="_blank">← Back to Main Hub</a>[span_2](start_span)[span_2](end_span)
+</div>
+
+<div class="container">
+    <div class="logo-container">
+        <div class="logo">
+            <span class="logo-box">Get</span><span class="logo-text">YT</span>
         </div>
-    </nav>
+    </div>
+    
+    <div class="input-group">
+        <input type="text" id="urlInput" placeholder="Enter YouTube URL...">
+        <button id="processBtn" class="action-btn" onclick="processVideo()">Process Video</button>
+    </div>
 
-    <!-- Main Container -->
-    <div class="container">
-        <h1>GetYT Downloader</h1>
-        <p class="subtitle">Convert and download YouTube videos into MP3 and MP4 formats instantly, powered by codebitee.</p>
+    <div class="content-section">
+        <div class="poster-box" id="posterContainer">
+            Video Poster
+        </div>
 
-        <div class="downloader-card">
-            <div class="input-group">
-                <input type="text" placeholder="Paste YouTube Video Link here...">
-                <button class="btn-primary">Process</button>
+        <div class="options-box">
+            <label>Format:</label>
+            <div class="format-buttons">
+                <button id="mp3Btn" onclick="selectFormat('mp3')">MP3</button>
+                <button id="mp4Btn" onclick="selectFormat('mp4')" class="active">MP4</button>
             </div>
-            
-            <!-- Quality selection & Progress placeholders -->
-            <div style="margin-top: 15px; font-size: 0.9rem; color: #9ca3af;">
-                Select Quality: <span style="color: #3b82f6; font-weight: bold;">MP4 (1080p), MP3 (320kbps)</span>
-            </div>
 
-            <!-- Ad Placeholder Container -->
-            <div class="ad-container">
-                [ Ad Placeholder Container ]
+            <label>Quality & Size:</label>
+            <div id="qualityList" style="display: flex; flex-direction: column; gap: 4px;">
+                <span style="font-size: 11px; color: #6b7280;">Process video first</span>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Footer matching codebitee -->
-    <footer>
-        <div class="footer-content">
-            <h3>About codebitee ecosystem</h3>
-            <p>This tool is an official sub-tool of <strong>codebitee</strong> – a growing hub for AI and coding tools, projects, tutorials, and more, developed and managed by Aditya Jagtap[span_5](start_span)[span_5](end_span)[span_6](start_span)[span_6](end_span).</p>
+<!-- Expanded Ad Space -->
+<div class="ad-container">
+    <span>Advertisement Space (Google AdSense / Banner)</span>
+</div>
 
-            <div class="footer-grid">
-                <div class="footer-card">
-                    <span>Gmail</span>
-                    asjagtap1109@[span_7](start_span)[span_7](end_span)
-                </div>
-                <div class="footer-card">
-                    <span>Instagram</span>
-                    __aditya_1109_[span_8](start_span)[span_8](end_span)
-                </div>
-                <div class="footer-card">
-                    <span>Main Hub</span>
-                    <a href="https://codebitee.github.io" style="color: #3b82f6; text-decoration: none;">codebitee.github.io</a>[span_9](start_span)[span_9](end_span)
-                </div>
-            </div>
+<!-- Download Button -->
+<div class="download-wrapper">
+    <button class="action-btn download-btn" style="width: 100%;" onclick="downloadFile()">Download File</button>
+</div>
 
-            <div class="footer-bottom">
-                <div>© 2026 Aditya Jagtap (founder)[span_10](start_span)[span_10](end_span). All rights reserved.</div>
-                <div><a href="#">Privacy Policy</a>[span_11](start_span)[span_11](end_span)</div>
-            </div>
-        </div>
-    </footer>
+<!-- Footer Links with codebitee & founder reference -->
+<div class="page-footer">
+    <p>Managed by <strong>Aditya Jagtap</strong>[span_3](start_span)[span_3](end_span) as part of <a href="https://codebitee.github.io" style="color: #3b82f6;">codebitee</a>[span_4](start_span)[span_4](end_span)</p>
+    <div>
+        <a href="privacy.html" target="_blank">Privacy Policy</a> | 
+        <a href="about.html" target="_blank">About Us</a> | 
+        <a href="contact.html" target="_blank">Contact</a> | 
+        <a href="https://codebitee.github.io" target="_blank">codebitee.github.io</a>[span_5](start_span)[span_5](end_span)
+    </div>
+    <div style="margin-top: 8px; color: #4b5563;">© 2026 Aditya Jagtap (founder)[span_6](start_span)[span_6](end_span)</div>
+</div>
+
+<script>
+    let selectedFormat = 'mp4';
+    let selectedQuality = '240p';
+
+    function selectFormat(format) {
+        selectedFormat = format;
+        document.getElementById('mp3Btn').classList.toggle('active', format === 'mp3');
+        document.getElementById('mp4Btn').classList.toggle('active', format === 'mp4');
+        
+        if(window.videoProcessed) {
+            updateQualities();
+        }
+    }
+
+    function updateQualities() {
+        const qualityList = document.getElementById('qualityList');
+        qualityList.innerHTML = '';
+        
+        let options = selectedFormat === 'mp3' 
+            ? ['96 kbps (~2 MB)', '128 kbps (~4 MB)', '256 kbps (~8 MB)', '320 kbps (~12 MB)']
+            : ['240p (~15 MB)', '480p (~45 MB)', '720p (~95 MB)', '1080p (~220 MB)'];
+
+        selectedQuality = options[0].split(' ')[0];
+
+        options.forEach((opt, index) => {
+            let btn = document.createElement('button');
+            btn.innerText = opt;
+            btn.style.fontSize = '10px';
+            btn.style.padding = '5px';
+            btn.style.border = '1px solid #30363d';
+            btn.style.borderRadius = '4px';
+            btn.style.cursor = 'pointer';
+            
+            if (index === 0) {
+                btn.style.background = '#ff0000';
+                btn.style.color = 'white';
+                btn.style.borderColor = '#ff0000';
+                btn.style.boxShadow = '0 0 8px rgba(255,0,0,0.5)';
+            } else {
+                btn.style.background = '#0b0f19';
+                btn.style.color = '#9ca3af';
+            }
+
+            btn.onclick = () => {
+                document.querySelectorAll('#qualityList button').forEach(b => {
+                    b.style.background = '#0b0f19';
+                    b.style.color = '#9ca3af';
+                    b.style.borderColor = '#30363d';
+                    b.style.boxShadow = 'none';
+                });
+                btn.style.background = '#ff0000';
+                btn.style.color = 'white';
+                btn.style.borderColor = '#ff0000';
+                btn.style.boxShadow = '0 0 8px rgba(255,0,0,0.5)';
+                selectedQuality = opt.split(' ')[0];
+            };
+            qualityList.appendChild(btn);
+        });
+    }
+
+    function processVideo() {
+        const url = document.getElementById('urlInput').value;
+        const btn = document.getElementById('processBtn');
+        const posterContainer = document.getElementById('posterContainer');
+
+        if(!url) {
+            alert('Please enter a valid YouTube URL!');
+            return;
+        }
+
+        btn.innerText = 'Processing...';
+        posterContainer.innerHTML = 'Loading...';
+
+        fetch('http://localhost:3000/api/info', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url: url })
+        })
+        .then(res => res.json())
+        .then(data => {
+            btn.innerText = 'Process Video';
+            if(data.thumbnail) {
+                posterContainer.innerHTML = `<img src="${data.thumbnail}" alt="Thumbnail">`;
+                window.videoProcessed = true;
+                updateQualities();
+            } else {
+                posterContainer.innerHTML = 'Poster Not Found';
+            }
+        })
+        .catch(err => {
+            btn.innerText = 'Process Video';
+            posterContainer.innerHTML = 'Error loading';
+            console.error(err);
+        });
+    }
+
+    function downloadFile() {
+        const url = document.getElementById('urlInput').value;
+        if(!url || !window.videoProcessed) {
+            alert('Please enter and process a URL first!');
+            return;
+        }
+        window.location.href = `http://localhost:3000/api/download?url=${encodeURIComponent(url)}&format=${selectedFormat}&quality=${selectedQuality}`;
+    }
+</script>
 
 </body>
 </html>
