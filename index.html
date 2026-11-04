@@ -94,12 +94,12 @@
             font-weight: bold;
         }
         .logo-box {
-            background-color: #ff0000;
+            background-color: #3b82f6;
             color: white;
             padding: 4px 10px;
             border-radius: 6px;
             margin-right: 4px;
-            box-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
+            box-shadow: 0 0 12px #5b94f6;
         }
         .logo-text {
             color: #ffffff;
@@ -120,32 +120,32 @@
             outline: none;
         }
         input[type="text"]:focus {
-            border-color: #ff0000;
+            border-color: #3b82f6;
         }
         
         .action-btn {
             padding: 12px;
-            background: linear-gradient(135deg, #ff0000, #cc0000);
+            background: linear-gradient(135deg, #3b82f6, #3b82f6);
             color: white;
             border: none;
             border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
             font-weight: bold;
-            box-shadow: 0 4px 12px rgba(255, 0, 0, 0.4);
+            
             transition: 0.2s;
         }
         .action-btn:hover {
-            background: linear-gradient(135deg, #ff1a1a, #e60000);
-            box-shadow: 0 6px 15px rgba(255, 0, 0, 0.6);
+            background: linear-gradient(135deg, #3b82f6, #3b82f6);
+            
         }
         .download-btn {
-            background: linear-gradient(135deg, #00b33c, #00802b) !important;
-            box-shadow: 0 4px 10px rgba(0, 179, 60, 0.4) !important;
+            background: linear-gradient(135deg, #3b82f6, #3b82f6) !important;
+            
         }
         .download-btn:hover {
-            background: linear-gradient(135deg, #00cc44, #009933) !important;
-            box-shadow: 0 6px 15px rgba(0, 179, 60, 0.6) !important;
+            background: linear-gradient(135deg, #3b82f6, #3b82f6) !important;
+            
         }
         .content-section {
             display: flex;
@@ -196,10 +196,10 @@
             cursor: pointer;
         }
         .format-buttons button.active {
-            background: #ff0000;
+            background: #3b82f6;
             color: white;
-            border-color: #ff0000;
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            border-color: #3b82f6;
+            
         }
         
         .ad-container {
@@ -262,11 +262,10 @@
             color: #ffffff;
         }
 
-        .footer-bottom {
-            font-size: 0.75rem;
-            color: #4b5563;
-            border-top: 1px solid #1e2530;
-            padding-top: 15px;
+        .footer {
+            font-size: 0.80rem;
+            color: #9ca3af;
+            padding-bottom: 5px;
         }
     </style>
 </head>
@@ -277,9 +276,6 @@
     <a href="https://codebitee.github.io" class="logo">
         🌐 codebitee <span>/ GetYT</span>
     </a>
-    <div class="nav-right">
-        <a href="https://codebitee.github.io" target="_blank">Main Hub[span_0](start_span)[span_0](end_span)</a>
-    </div>
 </nav>
 
 <div class="container">
@@ -326,25 +322,15 @@
 
 <!-- Footer -->
 <footer>
-    <div class="footer-content">
-        <p>Managed by <strong>Aditya Jagtap</strong>[span_1](start_span)[span_1](end_span) as part of <a href="https://codebitee.github.io" style="color: #3b82f6; text-decoration: none;">codebitee ecosystem</a>[span_2](start_span)[span_2](end_span).</p>
-        
-        <div class="footer-links">
-            <a href="privacy.html" target="_blank">Privacy Policy</a>[span_3](start_span)[span_3](end_span)
-            <a href="about.html" target="_blank">About Us</a>[span_4](start_span)[span_4](end_span)
-            <a href="contact.html" target="_blank">Contact</a>[span_5](start_span)[span_5](end_span)
-            <a href="https://codebitee.github.io" target="_blank">codebitee.github.io</a>[span_6](start_span)[span_6](end_span)
-        </div>
-
-        <div class="footer-bottom">
-            © 2026 Aditya Jagtap (founder)[span_7](start_span)[span_7](end_span). All rights reserved.
+    <div class="footer">
+            <span>© 2026 Aditya Jagtap (founder) </span><span><a href="/privacy.html">Privacy Policy</a></span>
         </div>
     </div>
 </footer>
 
 <script>
-    let selectedFormat = 'mp4';
-    let selectedQuality = '240p';
+    let selectedFormat = 'mp3';
+    let selectedQuality = '96kbps';
 
     function selectFormat(format) {
         selectedFormat = format;
@@ -376,10 +362,10 @@
             btn.style.cursor = 'pointer';
             
             if (index === 0) {
-                btn.style.background = '#ff0000';
+                btn.style.background = '#3b82f6';
                 btn.style.color = 'white';
-                btn.style.borderColor = '#ff0000';
-                btn.style.boxShadow = '0 0 8px rgba(255,0,0,0.5)';
+                btn.style.borderColor = '#3b82f6';
+                btn.style.boxShadow = '0 0 8px #3b82f6';
             } else {
                 btn.style.background = '#0b0f19';
                 btn.style.color = '#9ca3af';
@@ -392,10 +378,10 @@
                     b.style.borderColor = '#30363d';
                     b.style.boxShadow = 'none';
                 });
-                btn.style.background = '#ff0000';
+                btn.style.background = '#3b82f6';
                 btn.style.color = 'white';
-                btn.style.borderColor = '#ff0000';
-                btn.style.boxShadow = '0 0 8px rgba(255,0,0,0.5)';
+                btn.style.borderColor = '#3b82f6';
+                btn.style.boxShadow = '0 0 8px #3b82f6';
                 selectedQuality = opt.split(' ')[0];
             };
             qualityList.appendChild(btn);
