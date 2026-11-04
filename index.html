@@ -1,356 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- SEO Meta Tags -->
-<meta name="description" content="Free online YouTube video downloader. Download YouTube videos and music in MP3 and MP4 formats easily with multiple quality options.">
-<meta name="keywords" content="yt mate, y2, mate, YouTube downloader, YouTube to MP3, YouTube to MP4, free video downloader, download youtube audio">
-<meta name="author" content="Aditya Santosh Jagtap">
-<meta name="robots" content="index, follow">
-
-<!-- Open Graph / Social Media Meta Tags (For WhatsApp & Telegram sharing previews) -->
-<meta property="og:title" content="GetYT - Free YouTube Video & Audio Downloader">
-<meta property="og:description" content="Download your favorite YouTube videos and songs instantly in MP3 or MP4 format.">
-<meta property="og:type" content="website">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GetYT - YouTube Downloader</title>
+    <title>GetYT - YouTube Video Downloader | codebitee</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: #ffffff;
+        * {
             margin: 0;
-            padding: 20px 20px 50px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+            padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        .container {
-            width: 100%;
-            max-width: 400px;
-            background: #1e1e1e;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.2);
-        }
-        .logo-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .logo {
-            display: inline-flex;
-            align-items: center;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .logo-box {
-            background-color: #ff0000;
-            color: white;
-            padding: 4px 8px;
-            border-radius: 6px;
-            margin-right: 4px;
-            box-shadow: 0 0 10px #ff0000;
-        }
-        .logo-text {
+
+        body {
+            background-color: #0b0f19;
             color: #ffffff;
-        }
-        .input-group {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin-bottom: 20px;
+            min-height: 100vh;
         }
-        input[type="text"] {
-            padding: 12px;
-            background: #2a2a2a;
-            border: 1px solid #444;
-            color: #fff;
-            border-radius: 6px;
-            font-size: 14px;
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: #0b0f19;
+            border-bottom: 1px solid #1e2530;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        input[type="text"]:focus {
-            border-color: #ff0000;
-            outline: none;
-        }
-        /* Action Buttons */
-        .action-btn {
-            padding: 12px;
-            background: linear-gradient(135deg, #ff0000, #cc0000);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
+
+        .logo {
+            font-size: 1.5rem;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.4);
-            transition: 0.2s;
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .action-btn:hover {
-            background: linear-gradient(135deg, #ff1a1a, #e60000);
-            box-shadow: 0 6px 15px rgba(255, 0, 0, 0.6);
+
+        .logo span {
+            color: #3b82f6;
         }
-        .download-btn {
-            background: linear-gradient(135deg, #00b33c, #00802b) !important;
-            box-shadow: 0 4px 10px rgba(0, 179, 60, 0.4) !important;
-        }
-        .download-btn:hover {
-            background: linear-gradient(135deg, #00cc44, #009933) !important;
-            box-shadow: 0 6px 15px rgba(0, 179, 60, 0.6) !important;
-        }
-        .content-section {
+
+        .nav-right {
             display: flex;
             gap: 15px;
-        }
-        .poster-box {
-            width: 50%;
-            height: 140px;
-            background: #2a2a2a;
-            border: 1px dashed #444;
-            border-radius: 6px;
-            display: flex;
             align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            text-align: center;
-            color: #aaa;
-            font-size: 13px;
         }
-        .poster-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .options-box {
-            width: 50%;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .options-box label {
-            font-weight: bold;
-            font-size: 13px;
-            color: #ccc;
-        }
-        .format-buttons {
-            display: flex;
-            gap: 5px;
-        }
-        .format-buttons button {
-            flex: 1;
-            padding: 6px;
-            font-size: 12px;
-            background: #2a2a2a;
-            color: #ccc;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .format-buttons button.active {
-            background: #ff0000;
-            color: white;
-            box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
-        }
-        
-        /* Ad Space Container - Mothi keli ahe (Height 120px) */
-        .ad-container {
-            width: 100%;
-            max-width: 400px;
-            height: 120px;
-            background: #1a1a1a;
-            border: 1px dashed #555;
+
+        .search-box {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            padding: 8px 15px;
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            font-size: 13px;
-            margin: 15px 0;
+            color: #8b949e;
+            font-size: 0.9rem;
+            outline: none;
         }
-        
-        .download-wrapper {
-            width: 100%;
-            max-width: 400px;
-            margin-top: auto; /* Ekdam khali footer chya var push karel */
+
+        /* Main Container */
+        .container {
+            flex: 1;
+            max-width: 800px;
+            width: 90%;
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #ffffff, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            color: #9ca3af;
+            font-size: 1rem;
             margin-bottom: 30px;
         }
 
-        /* Footer Links at bottom */
-        .page-footer {
+        /* Downloader Card Box */
+        .downloader-card {
+            background-color: #121824;
+            border: 1px solid #1f293d;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            text-align: left;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 12px 16px;
+            background-color: #0b0f19;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: #3b82f6;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* Ad Placeholder Container (As requested earlier) */
+        .ad-container {
+            background-color: #0b0f19;
+            border: 1px dashed #30363d;
+            border-radius: 8px;
+            padding: 20px;
             text-align: center;
-            font-size: 12px;
-            color: #888;
-            width: 100%;
-            position: absolute;
-            bottom: 8px;
-            left: 0;
+            color: #6b7280;
+            margin-top: 20px;
+            font-size: 0.85rem;
         }
-        .page-footer a {
-            color: #aaa;
+
+        /* Footer matching codebitee */
+        footer {
+            background-color: #0b0f19;
+            border-top: 1px solid #1e2530;
+            padding: 40px 5% 20px 5%;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-content p {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .footer-card {
+            background-color: #121824;
+            border: 1px solid #1f293d;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: #9ca3af;
+        }
+
+        .footer-card span {
+            display: block;
+            color: #ffffff;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #1e2530;
+            padding-top: 20px;
+            font-size: 0.85rem;
+            color: #6b7280;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-bottom a {
+            color: #9ca3af;
             text-decoration: none;
-            margin: 0 5px;
         }
-        .page-footer a:hover {
-            color: #ff0000;
+
+        .footer-bottom a:hover {
+            color: #ffffff;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="logo-container">
-        <div class="logo">
-            <span class="logo-box">Get</span><span class="logo-text">YT</span>
+    <!-- Navbar -->
+    <nav>
+        <a href="https://codebitee.github.io" class="logo">
+            🌐 codebitee <span>/ GetYT</span>
+        </a>
+        <div class="nav-right">
+            <span style="font-size: 0.9rem; color: #9ca3af;">Part of codebitee ecosystem</span>
         </div>
-    </div>
-    
-    <div class="input-group">
-        <input type="text" id="urlInput" placeholder="Enter YouTube URL...">
-        <button id="processBtn" class="action-btn" onclick="processVideo()">Process Video</button>
-    </div>
+    </nav>
 
-    <div class="content-section">
-        <div class="poster-box" id="posterContainer">
-            Video Poster
-        </div>
+    <!-- Main Container -->
+    <div class="container">
+        <h1>GetYT Downloader</h1>
+        <p class="subtitle">Convert and download YouTube videos into MP3 and MP4 formats instantly, powered by codebitee.</p>
 
-        <div class="options-box">
-            <label>Format:</label>
-            <div class="format-buttons">
-                <button id="mp3Btn" onclick="selectFormat('mp3')">MP3</button>
-                <button id="mp4Btn" onclick="selectFormat('mp4')" class="active">MP4</button>
+        <div class="downloader-card">
+            <div class="input-group">
+                <input type="text" placeholder="Paste YouTube Video Link here...">
+                <button class="btn-primary">Process</button>
             </div>
-
-            <label>Quality & Size:</label>
-            <div id="qualityList" style="display: flex; flex-direction: column; gap: 4px;">
-                <span style="font-size: 11px; color: #777;">Process video first</span>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Expanded Ad Space -->
-<div class="ad-container">
-    <span>Advertisement Space (Google AdSense / Banner)</span>
-</div>
-
-<!-- Download Button placed right above the footer -->
-<div class="download-wrapper">
-    <button class="action-btn download-btn" style="width: 100%;" onclick="downloadFile()">Download File</button>
-</div>
-
-<!-- Footer Links -->
-<div class="page-footer">
-    <a href="privacy.html" target="_blank">Privacy Policy</a> | 
-    <a href="about.html" target="_blank">About Us</a> | 
-    <a href="contact.html" target="_blank">Contact</a> | 
-    <a href="more.html" target="_blank">More</a>
-</div>
-
-<script>
-    let selectedFormat = 'mp4';
-    let selectedQuality = '240p';
-
-    function selectFormat(format) {
-        selectedFormat = format;
-        document.getElementById('mp3Btn').classList.toggle('active', format === 'mp3');
-        document.getElementById('mp4Btn').classList.toggle('active', format === 'mp4');
-        
-        if(window.videoProcessed) {
-            updateQualities();
-        }
-    }
-
-    function updateQualities() {
-        const qualityList = document.getElementById('qualityList');
-        qualityList.innerHTML = '';
-        
-        let options = selectedFormat === 'mp3' 
-            ? ['96 kbps (~2 MB)', '128 kbps (~4 MB)', '256 kbps (~8 MB)', '320 kbps (~12 MB)']
-            : ['240p (~15 MB)', '480p (~45 MB)', '720p (~95 MB)', '1080p (~220 MB)'];
-
-        selectedQuality = options[0].split(' ')[0];
-
-        options.forEach((opt, index) => {
-            let btn = document.createElement('button');
-            btn.innerText = opt;
-            btn.style.fontSize = '10px';
-            btn.style.padding = '5px';
-            btn.style.border = 'none';
-            btn.style.borderRadius = '4px';
-            btn.style.cursor = 'pointer';
             
-            if (index === 0) {
-                btn.style.background = '#ff0000';
-                btn.style.color = 'white';
-                btn.style.boxShadow = '0 0 8px rgba(255,0,0,0.5)';
-            } else {
-                btn.style.background = '#2a2a2a';
-                btn.style.color = '#ccc';
-            }
+            <!-- Quality selection & Progress placeholders -->
+            <div style="margin-top: 15px; font-size: 0.9rem; color: #9ca3af;">
+                Select Quality: <span style="color: #3b82f6; font-weight: bold;">MP4 (1080p), MP3 (320kbps)</span>
+            </div>
 
-            btn.onclick = () => {
-                document.querySelectorAll('#qualityList button').forEach(b => {
-                    b.style.background = '#2a2a2a';
-                    b.style.color = '#ccc';
-                    b.style.boxShadow = 'none';
-                });
-                btn.style.background = '#ff0000';
-                btn.style.color = 'white';
-                btn.style.boxShadow = '0 0 8px rgba(255,0,0,0.5)';
-                selectedQuality = opt.split(' ')[0];
-            };
-            qualityList.appendChild(btn);
-        });
-    }
+            <!-- Ad Placeholder Container -->
+            <div class="ad-container">
+                [ Ad Placeholder Container ]
+            </div>
+        </div>
+    </div>
 
-    function processVideo() {
-        const url = document.getElementById('urlInput').value;
-        const btn = document.getElementById('processBtn');
-        const posterContainer = document.getElementById('posterContainer');
+    <!-- Footer matching codebitee -->
+    <footer>
+        <div class="footer-content">
+            <h3>About codebitee ecosystem</h3>
+            <p>This tool is an official sub-tool of <strong>codebitee</strong> – a growing hub for AI and coding tools, projects, tutorials, and more, developed and managed by Aditya Jagtap[span_5](start_span)[span_5](end_span)[span_6](start_span)[span_6](end_span).</p>
 
-        if(!url) {
-            alert('Please enter a valid YouTube URL!');
-            return;
-        }
+            <div class="footer-grid">
+                <div class="footer-card">
+                    <span>Gmail</span>
+                    asjagtap1109@[span_7](start_span)[span_7](end_span)
+                </div>
+                <div class="footer-card">
+                    <span>Instagram</span>
+                    __aditya_1109_[span_8](start_span)[span_8](end_span)
+                </div>
+                <div class="footer-card">
+                    <span>Main Hub</span>
+                    <a href="https://codebitee.github.io" style="color: #3b82f6; text-decoration: none;">codebitee.github.io</a>[span_9](start_span)[span_9](end_span)
+                </div>
+            </div>
 
-        btn.innerText = 'Processing...';
-        posterContainer.innerHTML = 'Loading...';
-
-        fetch('http://localhost:3000/api/info', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ url: url })
-        })
-        .then(res => res.json())
-        .then(data => {
-            btn.innerText = 'Process Video';
-            if(data.thumbnail) {
-                posterContainer.innerHTML = `<img src="${data.thumbnail}" alt="Thumbnail">`;
-                window.videoProcessed = true;
-                updateQualities();
-            } else {
-                posterContainer.innerHTML = 'Poster Not Found';
-            }
-        })
-        .catch(err => {
-            btn.innerText = 'Process Video';
-            posterContainer.innerHTML = 'Error loading';
-            console.error(err);
-        });
-    }
-
-    function downloadFile() {
-        const url = document.getElementById('urlInput').value;
-        if(!url || !window.videoProcessed) {
-            alert('Please enter and process a URL first!');
-            return;
-        }
-        window.location.href = `http://localhost:3000/api/download?url=${encodeURIComponent(url)}&format=${selectedFormat}&quality=${selectedQuality}`;
-    }
-</script>
+            <div class="footer-bottom">
+                <div>© 2026 Aditya Jagtap (founder)[span_10](start_span)[span_10](end_span). All rights reserved.</div>
+                <div><a href="#">Privacy Policy</a>[span_11](start_span)[span_11](end_span)</div>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
