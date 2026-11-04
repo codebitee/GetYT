@@ -18,42 +18,66 @@
     <style>
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0b0f19; /* codebitee dark theme background */
+            background-color: #0b0f19;
             color: #ffffff;
-            margin: 0;
-            padding: 20px 20px 60px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            padding-bottom: 40px;
         }
 
-        /* Top Ecosystem Navbar Link */
-        .top-nav {
+        /* Proper Navbar matching codebitee */
+        nav {
             width: 100%;
-            max-width: 400px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
-            font-size: 0.85rem;
+            padding: 15px 5%;
+            background-color: #0b0f19;
+            border-bottom: 1px solid #1e2530;
+            margin-bottom: 30px;
         }
-        .top-nav a {
-            color: #3b82f6;
-            text-decoration: none;
+
+        .logo {
+            font-size: 1.2rem;
             font-weight: bold;
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .top-nav span {
-            color: #8b949e;
+
+        .logo span {
+            color: #3b82f6;
+        }
+
+        .nav-right a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.85rem;
+            background: #121824;
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid #1f293d;
+            transition: 0.2s;
+        }
+
+        .nav-right a:hover {
+            color: #ffffff;
+            border-color: #3b82f6;
         }
 
         .container {
-            width: 100%;
+            width: 90%;
             max-width: 400px;
-            background: #121824; /* codebitee card background */
+            background: #121824;
             padding: 20px;
             border-radius: 16px;
             border: 1px solid #1f293d;
@@ -63,14 +87,14 @@
             text-align: center;
             margin-bottom: 20px;
         }
-        .logo {
+        .main-logo {
             display: inline-flex;
             align-items: center;
             font-size: 24px;
             font-weight: bold;
         }
         .logo-box {
-            background-color: #ff0000; /* Shiny red button touch */
+            background-color: #ff0000;
             color: white;
             padding: 4px 10px;
             border-radius: 6px;
@@ -99,7 +123,6 @@
             border-color: #ff0000;
         }
         
-        /* Action Buttons with Shiny Red Touch */
         .action-btn {
             padding: 12px;
             background: linear-gradient(135deg, #ff0000, #cc0000);
@@ -179,9 +202,8 @@
             box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
         
-        /* Ad Space Container */
         .ad-container {
-            width: 100%;
+            width: 90%;
             max-width: 400px;
             height: 120px;
             background: #121824;
@@ -196,48 +218,73 @@
         }
         
         .download-wrapper {
-            width: 100%;
+            width: 90%;
             max-width: 400px;
-            margin-top: auto;
+            margin-top: 10px;
             margin-bottom: 20px;
         }
 
-        /* Footer Links matching codebitee */
-        .page-footer {
-            text-align: center;
-            font-size: 11px;
-            color: #6b7280;
+        /* Footer matching codebitee */
+        footer {
             width: 100%;
-            max-width: 400px;
-            margin-top: 10px;
+            background-color: #0b0f19;
             border-top: 1px solid #1e2530;
-            padding-top: 15px;
+            padding: 30px 5% 20px 5%;
+            margin-top: 30px;
+            text-align: center;
         }
-        .page-footer p {
-            margin-bottom: 8px;
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 0.85rem;
             color: #9ca3af;
         }
-        .page-footer a {
+
+        .footer-content p {
+            margin-bottom: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
             color: #9ca3af;
             text-decoration: none;
-            margin: 0 4px;
         }
-        .page-footer a:hover {
+
+        .footer-links a:hover {
             color: #ffffff;
+        }
+
+        .footer-bottom {
+            font-size: 0.75rem;
+            color: #4b5563;
+            border-top: 1px solid #1e2530;
+            padding-top: 15px;
         }
     </style>
 </head>
 <body>
 
-<!-- Ecosystem Link Back to codebitee -->
-<div class="top-nav">
-    <span>Sub-tool of codebitee</span>
-    <a href="https://codebitee.github.io" target="_blank">← Back to Main Hub</a>[span_2](start_span)[span_2](end_span)
-</div>
+<!-- Proper Navbar -->
+<nav>
+    <a href="https://codebitee.github.io" class="logo">
+        🌐 codebitee <span>/ GetYT</span>
+    </a>
+    <div class="nav-right">
+        <a href="https://codebitee.github.io" target="_blank">Main Hub[span_0](start_span)[span_0](end_span)</a>
+    </div>
+</nav>
 
 <div class="container">
     <div class="logo-container">
-        <div class="logo">
+        <div class="main-logo">
             <span class="logo-box">Get</span><span class="logo-text">YT</span>
         </div>
     </div>
@@ -277,17 +324,23 @@
     <button class="action-btn download-btn" style="width: 100%;" onclick="downloadFile()">Download File</button>
 </div>
 
-<!-- Footer Links with codebitee & founder reference -->
-<div class="page-footer">
-    <p>Managed by <strong>Aditya Jagtap</strong>[span_3](start_span)[span_3](end_span) as part of <a href="https://codebitee.github.io" style="color: #3b82f6;">codebitee</a>[span_4](start_span)[span_4](end_span)</p>
-    <div>
-        <a href="privacy.html" target="_blank">Privacy Policy</a> | 
-        <a href="about.html" target="_blank">About Us</a> | 
-        <a href="contact.html" target="_blank">Contact</a> | 
-        <a href="https://codebitee.github.io" target="_blank">codebitee.github.io</a>[span_5](start_span)[span_5](end_span)
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <p>Managed by <strong>Aditya Jagtap</strong>[span_1](start_span)[span_1](end_span) as part of <a href="https://codebitee.github.io" style="color: #3b82f6; text-decoration: none;">codebitee ecosystem</a>[span_2](start_span)[span_2](end_span).</p>
+        
+        <div class="footer-links">
+            <a href="privacy.html" target="_blank">Privacy Policy</a>[span_3](start_span)[span_3](end_span)
+            <a href="about.html" target="_blank">About Us</a>[span_4](start_span)[span_4](end_span)
+            <a href="contact.html" target="_blank">Contact</a>[span_5](start_span)[span_5](end_span)
+            <a href="https://codebitee.github.io" target="_blank">codebitee.github.io</a>[span_6](start_span)[span_6](end_span)
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 Aditya Jagtap (founder)[span_7](start_span)[span_7](end_span). All rights reserved.
+        </div>
     </div>
-    <div style="margin-top: 8px; color: #4b5563;">© 2026 Aditya Jagtap (founder)[span_6](start_span)[span_6](end_span)</div>
-</div>
+</footer>
 
 <script>
     let selectedFormat = 'mp4';
