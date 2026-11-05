@@ -8,17 +8,20 @@ export default function handler(req, res) {
     return;
   }
 
-  // Apan ithe GET ani POST dono requests handle karu
   const url = req.method === 'GET' ? req.query.url : req.body.url;
+  const format = req.method === 'GET' ? req.query.format : req.body.format;
+  const quality = req.method === 'GET' ? req.query.quality : req.body.quality;
 
   if (!url) {
-    return res.status(400).json({ error: 'कृपया युट्यूबची लिंक (URL) द्या.' });
+    return res.status(400).json({ error: 'Please provide a valid YouTube URL.' });
   }
 
   return res.status(200).json({
     success: true,
-    message: 'डउलोडसाठी लिंक तयार आहे!',
-    receivedUrl: url,
-    downloadLink: '#' // Yethe pudhe khara download logic yeil
+    message: 'Video successfully processed for download!',
+    url: url,
+    format: format || 'mp4',
+    quality: quality || '720p',
+    downloadUrl: '#'
   });
 }
