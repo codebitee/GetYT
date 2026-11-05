@@ -401,7 +401,7 @@
         btn.innerText = 'Processing...';
         posterContainer.innerHTML = 'Loading...';
 
-        fetch('http:/api/download', {
+        fetch('/api/info', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ url: url })
