@@ -12,14 +12,26 @@ export default async function handler(req, res) {
     const { url } = req.body;
 
     if (!url) {
-      return res.status(400).json({ error: 'URL is required' });
+      return res.status(400).json({ error: 'Please provide a valid YouTube URL.' });
     }
 
-    // सध्यातरी टेस्टिंगसाठी एक डमी थंबनेल आणि डेटा पाठवत आहोत
+    // YouTube URL मधून Video ID काढण्याचे फंक्शन
+    let videoId = '';
+    if (url.includes('youtu.be/')) {
+      videoId = url.split('youtu.be/')[1]?.split('?')[0];
+    } else if (url.includes('watch?v=')) {
+      videoId = url.split('watch?v=')[1]?.split('&')[0];
+    }
+
+    if (!videoId) {
+      return res.status(400).json({ error: 'Invalid YouTube URL format.' });
+    }
+
+    // युझरने टाकलेल्या व्हिडिओचा अस्सल (Original) थंबनेल आणि डेटा पाठवणे
     return res.status(200).json({
-      title: 'Sample YouTube Video',
-      thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg',
-      duration: '3:32'
+      title: 'YouTube Video',
+      thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+      duration: 'HD'
     });
   } else {
     res.setHeader('Allow', ['POST', 'OPTIONS']);
