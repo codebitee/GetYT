@@ -388,24 +388,23 @@
         });
     }
 
-    function processVideo() {
+        function processVideo() {
         const url = document.getElementById('urlInput').value;
         const btn = document.getElementById('processBtn');
         const posterContainer = document.getElementById('posterContainer');
 
         if(!url) {
-            alert('Please enter a valid YouTube URL!');
+            alert('Enter valid URL please!');
             return;
         }
 
         btn.innerText = 'Processing...';
         posterContainer.innerHTML = 'Loading...';
 
-        fetch('/api/info', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ url: url })
-        })
+        // आपल्या Render सर्व्हरची URL वापरणे
+        const backendBaseUrl = 'https://getyt-h33f.onrender.com';
+
+        fetch(`${backendBaseUrl}/api/video-info?url=${encodeURIComponent(url)}`)
         .then(res => res.json())
         .then(data => {
             btn.innerText = 'Process Video';
@@ -424,29 +423,22 @@
         });
     }
 
-            function downloadFile() {
+
+                function downloadFile() {
         const url = document.getElementById('urlInput').value;
         if(!url || !window.videoProcessed) {
-            alert('Please enter and process a URL first!');
-            return;
-        }
-        
-        let videoId = '';
-        if (url.includes('youtu.be/')) {
-            videoId = url.split('youtu.be/')[1]?.split('?')[0];
-        } else if (url.includes('watch?v=')) {
-            videoId = url.split('watch?v=')[1]?.split('&')[0];
-        }
-
-        if (!videoId) {
-            alert('Invalid YouTube URL!');
+            alert('Please enter URL before Processing!');
             return;
         }
 
-        // नवीन टॅब ऐवजी थेट याच पेजवर रीडायरेक्ट करणे
-        const targetDownloadUrl = `https://www.ssyoutube.com/watch?v=${videoId}`;
-        window.location.href = targetDownloadUrl;
+        // आपली नवीन Render सर्व्हरची लाईव्ह URL आणि डाऊनलोड API
+        const backendBaseUrl = 'https://getyt-h33f.onrender.com';
+        const downloadUrl = `${backendBaseUrl}/api/download?url=${encodeURIComponent(url)}&format=${selectedFormat}`;
+
+        // थेट फाइल डाऊनलोड सुरू करणे
+        window.location.href = downloadUrl;
     }
+
 
 
 </script>
