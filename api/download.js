@@ -9,19 +9,16 @@ export default function handler(req, res) {
   }
 
   const url = req.method === 'GET' ? req.query.url : req.body.url;
-  const format = req.method === 'GET' ? req.query.format : req.body.format;
-  const quality = req.method === 'GET' ? req.query.quality : req.body.quality;
 
   if (!url) {
     return res.status(400).json({ error: 'Please provide a valid YouTube URL.' });
   }
 
-  return res.status(200).json({
-    success: true,
-    message: 'Video successfully processed for download!',
-    url: url,
-    format: format || 'mp4',
-    quality: quality || '720p',
-    downloadUrl: '#'
-  });
+  // इथे आपण युझरला थेट सेफ डाऊनलोड युआरएलवर रीडायरेक्ट करू शकतो
+  // किंवा सेव्हफ्रोम किंवा तत्सम सर्व्हिसचा वापर करू शकतो
+  const directDownloadUrl = `https://www.ssyoutube.com/watch?v=${encodeURIComponent(url)}`;
+
+  // थेट त्या लिंकवर रीडायरेक्ट करण्यासाठी:
+  res.writeHead(302, { Location: directDownloadUrl });
+  res.end();
 }
