@@ -424,14 +424,13 @@
         });
     }
 
-        function downloadFile() {
+            function downloadFile() {
         const url = document.getElementById('urlInput').value;
         if(!url || !window.videoProcessed) {
             alert('Please enter and process a URL first!');
             return;
         }
         
-        // YouTube URL मधून Video ID काढणे
         let videoId = '';
         if (url.includes('youtu.be/')) {
             videoId = url.split('youtu.be/')[1]?.split('?')[0];
@@ -444,11 +443,11 @@
             return;
         }
 
-        // युझरने निवडलेला format आणि quality घेऊन थेट सेफ डाऊनलोड युआरएल तयार करणे
-        // नवीन टॅबमध्ये डाऊनलोड पेज उघडेल
+        // नवीन टॅब ऐवजी थेट याच पेजवर रीडायरेक्ट करणे
         const targetDownloadUrl = `https://www.ssyoutube.com/watch?v=${videoId}`;
-        window.open(targetDownloadUrl, '_blank');
+        window.location.href = targetDownloadUrl;
     }
+
 
 </script>
 
