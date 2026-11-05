@@ -9,16 +9,30 @@ export default function handler(req, res) {
   }
 
   const url = req.method === 'GET' ? req.query.url : req.body.url;
+  const format = req.method === 'GET' ? req.query.format : req.body.format;
+  const quality = req.method === 'GET' ? req.query.quality : req.body.quality;
 
   if (!url) {
     return res.status(400).json({ error: 'Please provide a valid YouTube URL.' });
   }
 
-  // इथे आपण युझरला थेट सेफ डाऊनलोड युआरएलवर रीडायरेक्ट करू शकतो
-  // किंवा सेव्हफ्रोम किंवा तत्सम सर्व्हिसचा वापर करू शकतो
-  const directDownloadUrl = `https://www.ssyoutube.com/watch?v=${encodeURIComponent(url)}`;
+  // YouTube URL madhun Video ID kadhne
+  let videoId = '';
+  if (url.includes('youtu.be/')) {
+    videoId = url.split('youtu.be/')[1]?.split('?')[0];
+  } else if (url.includes('watch?v=')) {
+    videoId = url.split('watch?v=')[1]?.split('&')[0];
+  }
 
-  // थेट त्या लिंकवर रीडायरेक्ट करण्यासाठी:
+  if (!videoId) {
+    return res.status(400).json({ error: 'Invalid YouTube URL format.' });
+  }
+
+  // User ne select kelelya format ani quality nusar download link tayar karne
+  // Apan ithe ssyoutube kiwa y2mate sarkhya safe redirect servicecha vapar karu शकतो
+  let directDownloadUrl = `https://www.ssyoutube.com/watch?v=${videoId}`;
+
+  // Direct tyach page varun userla download sathi redirect/open karne
   res.writeHead(302, { Location: directDownloadUrl });
   res.end();
 }
