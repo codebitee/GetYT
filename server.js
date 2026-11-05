@@ -25,7 +25,7 @@ app.get('/api/video-info', async (req, res) => {
             return res.status(400).json({ error: 'Valid YouTube URL द्या.' });
         }
 
-        // YouTube official oEmbed API Call (YouTube cloud IP ला ब्लॉक करत नाही)
+        // YouTube official oEmbed API Call
         const oembedUrl = `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`;
         const response = await fetch(oembedUrl);
 
@@ -34,8 +34,6 @@ app.get('/api/video-info', async (req, res) => {
         }
 
         const data = await response.json();
-        
-        // High Quality Thumbnail Link
         const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
         res.json({
@@ -43,7 +41,7 @@ app.get('/api/video-info', async (req, res) => {
             thumbnail: thumbnailUrl
         });
     } catch (error) {
-        console.error(error);
+        console.error("Info Error:", error);
         res.status(500).json({ error: 'Video माहिती लोड करताना अडचण आली.' });
     }
 });
@@ -58,28 +56,25 @@ app.get('/api/download', async (req, res) => {
             return res.status(400).send('Valid YouTube URL द्या.');
         }
 
-        const info = await ytdl.getInfo(videoURL, {
-            requestOptions: {
-                headers: {
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-                }
-            }
-        });
-        
+        const info = await ytdl.getInfo(videoURL);
         const title = info.videoDetails.title.replace(/[^a-zA-Z0-9]/g, '_');
 
-        if (format === 'mp3') {
-            res.setHeader('Content-Disposition', `attachment; filename="${title}.mp3"`);
-            res.setHeader('Content-Type', 'audio/mpeg');
-            ytdl(videoURL, { filter: 'audioonly', quality: 'highestaudio' }).pipe(res);
-        } else {
-            res.setHeader('Content-Disposition', `attachment; filename="${title}.mp4"`);
-            res.setHeader('Content-Type', 'video/mp4');
-            ytdl(videoURL, { quality: 'highest' }).pipe(res);
-        }
+        const streamOptions = {
+            quality: format === 'mp3' ? 'highestaudio' : 'highest',
+            filter: format === 'mp3' ? 'audioonly' : 'videoandaudio',
+            highWaterMark: 1 << 25
+        };
+
+        res.setHeader('Content-Disposition', `attachment; filename="${title}.${format}"`);
+        res.setHeader('Content-Type', format === 'mp3' ? 'audio/mpeg' : 'video/mp4');
+
+        ytdl(videoURL, streamOptions).pipe(res);
+
     } catch (error) {
-        console.error(error);
-        res.status(500).send('डाऊनलोडिंग दरम्यान अडचण आली.');
+        console.error("Download Error:", error);
+        if (!res.headersSent) {
+            res.status(500).send('डाऊनलोडिंग दरम्यान अडचण आली.');
+        }
     }
 });
 
