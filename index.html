@@ -424,14 +424,32 @@
         });
     }
 
-    function downloadFile() {
+        function downloadFile() {
         const url = document.getElementById('urlInput').value;
         if(!url || !window.videoProcessed) {
             alert('Please enter and process a URL first!');
             return;
         }
-        window.location.href = `/api/download?url=${encodeURIComponent(url)}&format=${selectedFormat}&quality=${selectedQuality}`;
+        
+        // YouTube URL मधून Video ID काढणे
+        let videoId = '';
+        if (url.includes('youtu.be/')) {
+            videoId = url.split('youtu.be/')[1]?.split('?')[0];
+        } else if (url.includes('watch?v=')) {
+            videoId = url.split('watch?v=')[1]?.split('&')[0];
+        }
+
+        if (!videoId) {
+            alert('Invalid YouTube URL!');
+            return;
+        }
+
+        // युझरने निवडलेला format आणि quality घेऊन थेट सेफ डाऊनलोड युआरएल तयार करणे
+        // नवीन टॅबमध्ये डाऊनलोड पेज उघडेल
+        const targetDownloadUrl = `https://www.ssyoutube.com/watch?v=${videoId}`;
+        window.open(targetDownloadUrl, '_blank');
     }
+
 </script>
 
 </body>
