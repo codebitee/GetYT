@@ -401,7 +401,7 @@
         btn.innerText = 'Processing...';
         posterContainer.innerHTML = 'Loading...';
 
-        fetch('http://localhost:3000/api/info', {
+        fetch('http:/api/download', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ url: url })
@@ -430,7 +430,7 @@
             alert('Please enter and process a URL first!');
             return;
         }
-        window.location.href = `http://localhost:3000/api/download?url=${encodeURIComponent(url)}&format=${selectedFormat}&quality=${selectedQuality}`;
+        window.location.href = `/api/download?url=${encodeURIComponent(url)}&format=${selectedFormat}&quality=${selectedQuality}`;
     }
 </script>
 
